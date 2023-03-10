@@ -43,5 +43,10 @@
     <a href="cadastro.php">Registrar fornecedor</a>
 </div>
 
+<div class="voltarlistagem">
+    <a href="../escolha.php">Voltar</a>
+</div>
+
+
 <?php
     include ("../config/rodape.php");

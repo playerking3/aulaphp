@@ -98,6 +98,7 @@ a{
     padding: 10px 20px;
     background-color: rgb(255, 76, 76);
     color: white;
+    border-radius: 4px;
     
 }
 
@@ -108,7 +109,18 @@ a{
 
 .voltarlistagem{
     display: flex;
-    justify-content:end;
-    align-items: end;
-    height:49vh;
+    justify-content:center;
+
+}
+
+.escolha h1{
+    margin-bottom: 30px;
+}
+
+.tabela a{
+    display: flex;
+    justify-content: center;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 4px;
 }

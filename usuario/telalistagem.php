@@ -8,7 +8,7 @@
     $result = $conexao->query($sql);
 
     if($result->rowCount() > 0){
-        echo "<table border=1>";
+        echo "<table class='tabela' border=1>";
         echo "
             <tr>
                 <th>ID</th>

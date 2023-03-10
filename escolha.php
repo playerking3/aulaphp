@@ -28,3 +28,7 @@
         ?> 
     </div>
 </div>
+
+<div class="botao">
+    <a href="usuario/telalogin.php">Voltar</a>
+</div>
