@@ -13,9 +13,9 @@
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
-                <th>Razao</th>
+                <th>Razão Social</th>
                 <th>CNPJ</th>
-                <th>Tipo</th>
+                <th>Tipo da empresa</th>
                 <th>Editar</th>
                 <th>Deletar</th>
             </tr>
@@ -33,7 +33,7 @@
         }
         echo "</table>";
     }else{
-        echo "Nenhum usuário encontrado.";
+        echo "Nenhum fornecedor encontrado.";
     }
 
     include ("../config/rodape.php");

@@ -45,9 +45,9 @@
             ]);
 
             if($stmt ->rowCount() > 0){
-                echo "<div class='sucess'>Usuário cadastrado com sucesso</div>";
+                echo "<div class='sucess'>Fornecedor cadastrado com sucesso</div>";
             }else{
-                echo "<div class='error'>Erro ao cadastrar o usuário </div>";
+                echo "<div class='error'>Erro ao cadastrar o fornecedor </div>";
             }
 
             $conexao = null;
