@@ -38,7 +38,7 @@ input{
     font-size: 1em;
 }
 
-button{
+button, .voltar {
     background-color: #4caf50;
     color: white;
     padding: 10px 20px;
@@ -80,4 +80,35 @@ table th, table td{
 table th{
     background-color: #4caf50;
     color: white;
+}
+
+.escolha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+a{
+    text-decoration: none;
+}
+
+.escolha a, .botao a, .voltarlistagem a{
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: rgb(255, 76, 76);
+    color: white;
+    
+}
+
+.registroevoltar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.voltarlistagem{
+    display: flex;
+    justify-content:end;
+    align-items: end;
+    height:49vh;
 }

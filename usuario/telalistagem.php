@@ -33,5 +33,17 @@
     }else{
         echo "nenhum usuário encontrado";
     }
+?>
 
+<div class="botao">
+    <a href="TelaRegistro.php">Registrar usuário</a>
+</div>
+
+<div class="voltarlistagem">
+    <a href="../escolha.php">Voltar</a>
+</div>
+
+<?php
     include("../config/rodape.php");
+
+

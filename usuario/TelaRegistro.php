@@ -17,8 +17,11 @@
 
         <label for="senha">senha</label>
         <input type="password" name="senha" id="senha" required placeholder="informe sua senha">
-
-        <button type="submit">Registrar</button>
+        <div class="registroevoltar">
+            <button type="submit">Registrar</button>
+            <a class="voltar" href="telalistagem.php">Voltar</a>    
+        </div>
+        
     </form>
 
     <?php
@@ -32,19 +35,34 @@
             $email = $_POST["email"];
             $senha = $_POST["senha"];
 
-            $sql = "INSERT INTO usuario(nome,login,email,senha) VALUES (:nome, :login, :email, :senha)";
-            $stmt = $conexao->prepare($sql);
-            $stmt -> execute([
-                "nome" => $nome, 
-                "login" => $login,
-                "email"=> $email,
-                "senha" => $senha
-            ]);
+            
 
-            if($stmt ->rowCount() > 0){
-                echo "<div class='sucess'>Usuário cadastrado com sucesso</div>";
+            $query = "SELECT * FROM usuario WHERE login = :login AND email = :email";
+            $stmt  = $conexao->prepare($query);
+            $stmt->bindValue(":login",$login);
+            $stmt->bindValue(":email",$email);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($row){
+                die("Usuario já existe");
             }else{
-                echo "<div class='error'>Erro ao cadastrar o usuário </div>";
+                $sql = "INSERT INTO usuario(nome,login,email,senha) VALUES (:nome, :login, :email, :senha)";
+                $stmt = $conexao->prepare($sql);
+                $stmt -> execute([
+                    "nome" => $nome, 
+                    "login" => $login,
+                    "email"=> $email,
+                    "senha" => $senha
+                    
+                ]); 
+
+                if($stmt ->rowCount() > 0){
+                    echo "<div class='sucess'>Usuário cadastrado com sucesso</div>";
+                    header("Location: telalogin.php");
+                }else{
+                    echo "<div class='error'>Erro ao cadastrar o usuário </div>";
+                }   
             }
 
             //fechar a conexão

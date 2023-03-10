@@ -29,14 +29,14 @@
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if($result){
-                header("location: telalistagem.php");
+                header("location: ../escolha.php");
                 exit();
             }else{
                 echo "<div class='error'>Uusuário ou senha inválidos</div>";
             }
         }
     ?>
-</div>
+
 
 
 

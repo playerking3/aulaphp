@@ -21,7 +21,10 @@
         <label for="cpf">CPF</label>
         <input type="text" name="cpf" id="cpf" required placeholder="Insira o CPF">
 
-        <button type="submit">Registrar</button>
+        <div class="registroevoltar">
+            <button type="submit">Registrar</button>
+            <a class="voltar" href="fornecedorlistagem.php">Voltar</a>    
+        </div>
     </form>
 
     <?php
@@ -34,22 +37,36 @@
             $tipo = $_POST ["tipo"];
             $cpf = $_POST ["cpf"];
 
-            $sql = "INSERT INTO fornecedores(nome,razao,cnpj,tipo,cpf) VALUES (:nome, :razao, :cnpj, :tipo, :cpf)";
-            $stmt = $conexao->prepare($sql);
-            $stmt -> execute([
-                "nome" => $nome,
-                "razao" => $razao,
-                "cnpj" => $cnpj,
-                "tipo" => $tipo,
-                "cpf" => $cpf
-            ]);
+            //Para validar o registro
+            $query = "SELECT * FROM fornecedores WHERE cpf = :cpf AND cnpj = :cnpj";
+            $stmt = $conexao->prepare($query);
+            $stmt->bindValue(":cpf",$cpf);
+            $stmt->bindValue(":cnpj",$cnpj);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if($stmt ->rowCount() > 0){
-                echo "<div class='sucess'>Fornecedor cadastrado com sucesso</div>";
+
+            if($row){
+                die("Fornecedor já cadastrado");
             }else{
-                echo "<div class='error'>Erro ao cadastrar o fornecedor </div>";
-            }
+                $sql = "INSERT INTO fornecedores(nome,razao,cnpj,tipo,cpf) VALUES (:nome, :razao, :cnpj, :tipo, :cpf)";
+                $stmt = $conexao->prepare($sql);
+                $stmt -> execute([
+                    "nome" => $nome,
+                    "razao" => $razao,
+                    "cnpj" => $cnpj,
+                    "tipo" => $tipo,
+                    "cpf" => $cpf
+                ]);
 
+                if($stmt ->rowCount() > 0){
+                    echo "<div class='sucess'>Fornecedor cadastrado com sucesso</div>";
+                    header("Location: fornecedorlistagem.php");
+
+                }else{
+                    echo "<div class='error'>Erro ao cadastrar o fornecedor </div>";
+                }
+            }
             $conexao = null;
 
         }
